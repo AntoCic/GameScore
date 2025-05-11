@@ -228,13 +228,13 @@ footer {
 
     &.active {
       .sphere-core {
-        background: radial-gradient(circle at 40% 40%, #ff66ff, #6600ff);
-        box-shadow: 0 0 35px rgba(255, 102, 255, 0.7);
+        background: radial-gradient(circle at 40% 40%, #6669ff, #001aff);
+        box-shadow: 0 0 35px rgba(105, 102, 255, 0.7);
       }
 
       .ring {
-        border-color: rgba(255, 102, 255, 0.7);
-        box-shadow: 0 0 20px rgba(255, 102, 255, 0.5);
+        border-color: rgba(105, 102, 255, 0.7);
+        box-shadow: 0 0 20px rgba(102, 105, 255, 0.5);
       }
     }
   }
