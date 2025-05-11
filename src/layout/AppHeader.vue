@@ -2,10 +2,13 @@
   <header>
     <div class="container">
       <nav class="row align-items-center my-1">
-        <div class="col">
+        <div class="col-auto">
           <RouterLink :to="{ name: 'home' }">
             <img :src="$s.logoPath" class="logo-shadows logo-app align-text-top" alt="logo" />
           </RouterLink>
+        </div>
+        <div class="col">
+          <h1 class="mb-0"> {{ $s.appName }} </h1>
         </div>
         <div class="col-auto">
 
@@ -14,7 +17,7 @@
           </RouterLink>
 
           <RouterLink :to="{ name: 'login' }" v-else>
-            <button class="btn btn-outline-light border-0 px-1 me-1">
+            <button class="btn btn-outline-dark border-0 px-1 me-1">
               <span class="material-symbols-outlined">
                 account_circle
               </span>

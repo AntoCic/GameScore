@@ -1,4 +1,5 @@
 <template>
+  <Btn btn="info" class="me-2" @click="$router.push({ name: 'example.home' });">PAGINE ESEMPIO</Btn>
   <BtnModal name="test" @onConfirm="cleanLocalStorage" @onHide="annulla" icon="autorenew"
     body="Sei sicuro di voler cancellare tutto il contenuto del local storage?" header="Clean localStorage" />
   <hr>
@@ -14,10 +15,11 @@
 import axios from 'axios';
 import { dbSync } from '../stores/dbSync';
 import BtnModal from './BtnModal.vue';
+import Btn from './Btn.vue'
 
 export default {
   name: 'DeveloperModeHome',
-  components: { BtnModal },
+  components: { BtnModal, Btn },
   data() { return { dbSync, response: [], }; },
   methods: {
     async testImport() {

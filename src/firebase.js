@@ -5,8 +5,8 @@ import { getAuth, GoogleAuthProvider, createUserWithEmailAndPassword, signInWith
 
 // La tua configurazione Firebase
 const firebaseConfig = {
-    apiKey: "AIzaSyByFzlVlR70cs9WLQh7ROTkFeDDf-P0ANU",
-    authDomain: "tempbase2.firebaseapp.com",
+    apiKey: "AIzaSyAh8jhoPk5DQjZ43gwtvEEStBQ1xU6Xh9U",
+    authDomain: "gamescore-cic.firebaseapp.com",
 };
 if (firebaseConfig.apiKey === "AIzaSyByFzlVlR70cs9WLQh7ROTkFeDDf-P0ANU") { console.error('Settare firebaseConfig') }
 

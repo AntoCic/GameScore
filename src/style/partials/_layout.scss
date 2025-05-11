@@ -1,4 +1,5 @@
 @use './variables' as *;
+
 body {
     min-height: 100vh;
 }
@@ -20,5 +21,8 @@ main {
 }
 
 footer {
-    flex-shrink: 0;
+    position: fixed;
+    bottom: 30px;
+    width: 100%;
+    padding: 0 24px;
 }

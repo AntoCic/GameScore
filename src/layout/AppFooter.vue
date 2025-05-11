@@ -1,72 +1,245 @@
 <template>
-  <footer class="py-3">
+  <footer>
+    <div class="tabs">
+      <input type="radio" id="radio-1" name="tabs">
+      <label class="tab" for="radio-1" @click="selectTab('person_add')">
+        <span class="material-symbols-outlined">
+          person_add
+        </span>
+      </label>
 
-    <div class="container">
-      <div class="row align-items-center text-white">
-        <div class="col">
-          <p class="mb-0">Antonino Cicala &copy;2024.</p>
+      <input type="radio" id="radio-2" name="tabs" checked>
+      <label class="tab" for="radio-2" @click="selectTab('home')">
+        <div class="mainBtn-container" :class="{ active: selectedTab === 'home' }">
+          <div class="sphere-core"></div>
+          <div class="ring ring-1"></div>
+          <div class="ring ring-2"></div>
+          <div class="ring ring-3"></div>
         </div>
-        <div class="col-auto">
-          <RouterLink to="/contact" :class="$route.fullPath !== '/contact' ? 'text-decoration-underline' : 'd-none'">
-            Contatti</RouterLink>
-          <ul class="useful-links ps-0 mb-0 d-flex flex-row-reverse gap-2">
-            <li>
-              <a href="https://github.com/AntoCic" target="_blank">
-                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="40"
-                  zoomAndPan="magnify" viewBox="0 0 30 30.000001" height="40" preserveAspectRatio="xMidYMid meet"
-                  version="1.0">
-                  <defs>
-                    <clipPath id="27d19c62e6">
-                      <path d="M 0.492188 0 L 29.515625 0 L 29.515625 29.027344 L 0.492188 29.027344 Z M 0.492188 0 "
-                        clip-rule="nonzero" />
-                    </clipPath>
-                  </defs>
-                  <g clip-path="url(#27d19c62e6)">
-                    <path fill="currentColor"
-                      d="M 15.007812 2.414062 C 8.328125 2.414062 2.914062 7.832031 2.914062 14.511719 C 2.914062 21.191406 8.328125 26.605469 15.007812 26.605469 C 21.6875 26.605469 27.105469 21.191406 27.105469 14.511719 C 27.105469 7.832031 21.6875 2.414062 15.007812 2.414062 Z M 0.492188 14.511719 C 0.492188 6.496094 6.992188 -0.00390625 15.007812 -0.00390625 C 23.023438 -0.00390625 29.523438 6.496094 29.523438 14.511719 C 29.523438 22.527344 23.023438 29.027344 15.007812 29.027344 C 6.992188 29.027344 0.492188 22.527344 0.492188 14.511719 Z M 0.492188 14.511719 "
-                      fill-opacity="1" fill-rule="evenodd" />
-                  </g>
-                  <path fill="currentColor"
-                    d="M 12.09375 27.496094 C 11.976562 27.347656 11.976562 26 12.09375 23.460938 C 10.84375 23.503906 10.050781 23.417969 9.71875 23.199219 C 9.226562 22.875 8.730469 21.871094 8.289062 21.160156 C 7.847656 20.453125 6.871094 20.339844 6.476562 20.183594 C 6.082031 20.023438 5.984375 19.378906 7.5625 19.867188 C 9.144531 20.355469 9.222656 21.683594 9.71875 21.996094 C 10.21875 22.304688 11.410156 22.167969 11.949219 21.921875 C 12.492188 21.671875 12.453125 20.746094 12.546875 20.378906 C 12.667969 20.035156 12.242188 19.960938 12.230469 19.957031 C 11.703125 19.957031 8.933594 19.355469 8.171875 16.671875 C 7.410156 13.988281 8.390625 12.234375 8.914062 11.480469 C 9.261719 10.976562 9.230469 9.90625 8.820312 8.265625 C 10.3125 8.074219 11.460938 8.542969 12.269531 9.671875 C 12.269531 9.679688 13.332031 9.042969 15.007812 9.042969 C 16.683594 9.042969 17.28125 9.5625 17.738281 9.671875 C 18.195312 9.785156 18.5625 7.699219 21.398438 8.265625 C 20.808594 9.429688 20.3125 10.882812 20.691406 11.480469 C 21.066406 12.078125 22.550781 13.976562 21.640625 16.671875 C 21.03125 18.46875 19.835938 19.5625 18.054688 19.957031 C 17.851562 20.023438 17.75 20.125 17.75 20.273438 C 17.75 20.488281 18.023438 20.515625 18.421875 21.535156 C 18.6875 22.214844 18.707031 24.15625 18.480469 27.359375 C 17.90625 27.507812 17.457031 27.605469 17.136719 27.65625 C 16.570312 27.746094 15.957031 27.796875 15.351562 27.8125 C 14.746094 27.832031 14.535156 27.832031 13.699219 27.753906 C 13.144531 27.703125 12.609375 27.617188 12.09375 27.496094 Z M 12.09375 27.496094 "
-                    fill-opacity="1" fill-rule="evenodd" />
-                </svg>
-              </a>
 
-            </li>
-            <li>
-              <a href="https://www.linkedin.com/in/antonino-cicala/" target="_blank">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" data-supported-dps="24x24"
-                  fill="currentColor" class="mercado-match" width="24" height="24" focusable="false">
-                  <path
-                    d="M20.5 2h-17A1.5 1.5 0 002 3.5v17A1.5 1.5 0 003.5 22h17a1.5 1.5 0 001.5-1.5v-17A1.5 1.5 0 0020.5 2zM8 19H5v-9h3zM6.5 8.25A1.75 1.75 0 118.3 6.5a1.78 1.78 0 01-1.8 1.75zM19 19h-3v-4.74c0-1.42-.6-1.93-1.38-1.93A1.74 1.74 0 0013 14.19a.66.66 0 000 .14V19h-3v-9h2.9v1.3a3.11 3.11 0 012.7-1.4c1.55 0 3.36.86 3.36 3.66z">
-                  </path>
-                </svg>
-              </a>
+      </label>
 
-            </li>
-          </ul>
-        </div>
-      </div>
+      <input type="radio" id="radio-3" name="tabs">
+      <label class="tab" for="radio-3" @click="selectTab('settings')">
+        <span class="material-symbols-outlined">
+          settings
+        </span>
+      </label>
+
+      <span class="glider"></span>
     </div>
   </footer>
 </template>
+
 
 <script>
 export default {
   data() {
     return {
+      selectedTab: 'home'
     }
   },
+  methods: {
+    selectTab(name) {
+      this.selectedTab = name
+    }
+  }
 }
 </script>
 
 
 <style lang="scss" scoped>
-.useful-links {
-  svg {
-    width: 25px;
-    height: 25px;
+footer {
+  .tabs {
+    display: flex;
+    position: relative;
+    justify-content: space-evenly;
+    background-color: rgba(255, 255, 255, 0.7);
+    box-shadow: 0 0 1px 0 rgba(24, 94, 224, 0.15), 0 6px 12px 0 rgba(24, 94, 224, 0.15);
+    padding: 0.75rem;
+    border-radius: 99px;
+    width: fit-content;
+    margin: 0 auto;
   }
+
+  .tabs * {
+    z-index: 2;
+  }
+
+  input[type="radio"] {
+    display: none;
+  }
+
+  .tab {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 30px;
+    width: 80px;
+    font-size: .8rem;
+    color: black;
+    font-weight: 500;
+    border-radius: 99px;
+    cursor: pointer;
+    transition: color 0.15s ease-in;
+    position: relative;
+    z-index: 2;
+  }
+
+  input[type="radio"]:checked+label {
+    color: #0866E3;
+  }
+
+  input#radio-1:checked~.glider {
+    left: calc(0% + 52px); // 40 = metà tab
+    transform: translate(-50%, -50%);
+  }
+
+  input#radio-2:checked~.glider {
+    left: calc(50%); // centro del contenitore
+    transform: translate(-50%, -50%);
+  }
+
+  input#radio-3:checked~.glider {
+    left: calc(100% - 52px); // 100% meno metà tab
+    transform: translate(-50%, -50%);
+  }
+
+  .glider {
+    position: absolute;
+    height: 40px;
+    width: 40px;
+    background-color: #e6eef9;
+    z-index: 1;
+    border-radius: 99px;
+    transition: 0.25s ease-out;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 0;
+  }
+
+  .mainBtn-container {
+    position: relative;
+    width: 32px;
+    height: 32px;
+    perspective: 100px;
+    transform-style: preserve-3d;
+
+    .sphere-core {
+      position: absolute;
+      width: 24px;
+      height: 24px;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: radial-gradient(circle at 40% 40%, #00eaff, #0066ff);
+      border-radius: 50%;
+      box-shadow: 0 0 25px rgba(0, 234, 255, 0.5);
+      animation: pulse 2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+    }
+
+    .ring {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      border: 1px solid rgba(0, 234, 255, 0.7);
+      border-radius: 50%;
+      box-shadow: 0 0 15px rgba(0, 234, 255, 0.3);
+      transform-style: preserve-3d;
+    }
+
+    .ring-1 {
+      animation: rotateX 2.5s cubic-bezier(0.65, 0, 0.35, 1) infinite;
+    }
+
+    .ring-2 {
+      animation: rotateY 2s cubic-bezier(0.55, 0, 0.45, 1) infinite;
+      width: 36px;
+      height: 36px;
+      top: -2px;
+      left: -2px;
+      border-color: rgba(0, 234, 255, 0.5);
+    }
+
+    .ring-3 {
+      animation: rotateXY 3s cubic-bezier(0.7, 0, 0.3, 1) infinite;
+      width: 40px;
+      height: 40px;
+      top: -4px;
+      left: -4px;
+      border-color: rgba(0, 234, 255, 0.3);
+    }
+
+    @keyframes rotateX {
+      0% {
+        transform: rotateX(0deg);
+      }
+
+      50% {
+        transform: rotateX(180deg);
+      }
+
+      100% {
+        transform: rotateX(360deg);
+      }
+    }
+
+    @keyframes rotateY {
+      0% {
+        transform: rotateY(0deg);
+      }
+
+      50% {
+        transform: rotateY(180deg);
+      }
+
+      100% {
+        transform: rotateY(360deg);
+      }
+    }
+
+    @keyframes rotateXY {
+      0% {
+        transform: rotateX(0deg) rotateY(0deg);
+      }
+
+      50% {
+        transform: rotateX(90deg) rotateY(180deg);
+      }
+
+      100% {
+        transform: rotateX(360deg) rotateY(360deg);
+      }
+    }
+
+    @keyframes pulse {
+
+      0%,
+      100% {
+        transform: translate(-50%, -50%) scale(1);
+        box-shadow: 0 0 25px rgba(0, 234, 255, 0.5);
+      }
+
+      50% {
+        transform: translate(-50%, -50%) scale(1.1);
+        box-shadow: 0 0 35px rgba(0, 234, 255, 0.7);
+      }
+    }
+
+    &.active {
+      .sphere-core {
+        background: radial-gradient(circle at 40% 40%, #ff66ff, #6600ff);
+        box-shadow: 0 0 35px rgba(255, 102, 255, 0.7);
+      }
+
+      .ring {
+        border-color: rgba(255, 102, 255, 0.7);
+        box-shadow: 0 0 20px rgba(255, 102, 255, 0.5);
+      }
+    }
+  }
+
+
 
 }
 </style>
