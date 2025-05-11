@@ -1,0 +1,21 @@
+{
+    "name": "__APP_NAME__",
+    "short_name": "__APP_SHORT_NAME__",
+    "start_url": "/",
+    "display": "__APP_DISPLAY__",
+    "background_color": "__APP_BACKGROUND_COLOR__",
+    "description": "__APP_DESCRIPTION__",
+    "icons": [
+        {
+            "src": "__APP_LOGO_SM__",
+            "sizes": "192x192",
+            "type": "image/png"
+        },
+        {
+            "src": "__APP_LOGO__",
+            "sizes": "512x512",
+            "type": "image/png"
+        }
+    ],
+    "version": "__APP_VERSION__"
+}

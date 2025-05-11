@@ -1,0 +1,20 @@
+{
+  "rules": {
+    "public": {
+      ".read": true,
+      ".write": "auth.uid === 'TUO_UID_ADMIN'"
+    },
+    "auth": {
+      ".read": "auth != null",
+      ".write": "auth != null",
+      "users": {
+        "$userId": {
+          ".read": "auth.uid === $userId || auth.uid === 'TUO_UID_ADMIN'",
+          ".write": "auth.uid === $userId || auth.uid === 'TUO_UID_ADMIN'"
+        }
+      }
+    },
+    ".read": false,
+    ".write": false
+  }
+}

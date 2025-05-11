@@ -1,0 +1,37 @@
+{
+  "author": "Antonino Cicala",
+  "version": "0.1.0",
+  "name": "temp2-vue-bootstrap-firebase",
+  "short_name": "TEMP",
+  "private": true,
+  "description": "Come prima cosa sistema il firebaseConfig in src/firebase.js",
+  "display": "fullscreen",
+  "background_color": "#212529",
+  "logo": "/img/logo/logo.png",
+  "logo_sm": "/img/logo/logo.png",
+  "type": "module",
+  "scripts": {
+    "set-init": "npm i && ntl link",
+    "start": "ntl dev",
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@popperjs/core": "^2.11.8",
+    "axios": "^1.7.2",
+    "bootstrap": "^5.3.3",
+    "firebase": "^10.12.5",
+    "firebase-admin": "^12.3.0",
+    "nanoid": "^5.1.5",
+    "vue": "^3.4.21",
+    "vue-router": "^4.3.3"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^5.0.4",
+    "sass": "^1.77.5",
+    "vite": "^5.2.0",
+    "vite-plugin-static-copy": "^2.1.0"
+  },
+  "license": "ISC"
+}

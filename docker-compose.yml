@@ -1,0 +1,15 @@
+version: "3.8"
+
+services:
+  app:
+    build: .
+    container_name: testBase2
+    ports:
+      - "8888:8888"  # Porta usata da Netlify Dev
+    volumes:
+      - .:/app
+      - /app/node_modules
+      - ~/.netlify:/root/.netlify
+    environment:
+      - NODE_ENV=development
+    command: ["ntl", "dev"]

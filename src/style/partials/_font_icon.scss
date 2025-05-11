@@ -1,0 +1,40 @@
+// google icon
+@import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200');
+
+.material-symbols-outlined {
+  vertical-align: sub;
+  padding: 0px;
+  font-variation-settings:
+    'FILL' 0,
+    'wght' 400,
+    'GRAD' 0,
+    'opsz' 24;
+}
+
+.material-symbols-outlined.fill {
+  font-variation-settings:
+    'FILL' 1,
+    'wght' 400,
+    'GRAD' 0,
+    'opsz' 24;
+}
+
+.p-input-icon {
+  padding-left: 1.8rem;
+}
+
+.p-input-group-icon {
+  padding-left: 1.8rem;
+}
+
+
+@font-face {
+  font-family: emoji;
+  src: url('/fonts/Noto_Color_Emoji/NotoColorEmoji-Regular.ttf');
+}
+
+.f-emoji {
+  font-family: emoji, sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
