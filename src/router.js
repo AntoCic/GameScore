@@ -27,6 +27,8 @@ import E_InputTel from './views/example/E_InputTel.vue'
 import E_SlackMsg from './views/example/E_SlackMsg.vue'
 import E_todoTyped from './views/example/E_todoTyped.vue'
 import E_Toast from './views/example/E_Toast.vue'
+import PlayersView from './views/players/PlayersView.vue'
+import SettingsView from './views/settings/SettingsView.vue'
 // %-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%
 
 const fullRoutes = {
@@ -71,6 +73,8 @@ const fullRoutes = {
 
   auth: [ // Aggiungi le rotte visibili solo se autenticato qui, se necessario.
     { path: '/user', name: 'user', component: UserView },
+    { path: '/players', name: 'players', component: PlayersView },
+    { path: '/settings', name: 'settings', component: SettingsView },
   ],
 };
 

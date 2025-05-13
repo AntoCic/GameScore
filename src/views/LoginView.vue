@@ -1,7 +1,7 @@
 <template>
   <div class="container my-auto">
     <div class="row justify-content-center p-3">
-      <div class="col col-md-8 col-lg-6 col-xl-4 p-3">
+      <div v-if="showLogin" class="col col-md-8 col-lg-6 col-xl-4 p-3">
         <CmpFlipCard :state="isRegistering">
           <template v-slot:front>
             <form @submit.prevent>
@@ -98,7 +98,8 @@
 
                   <input :type="password_visibility ? 'text' : 'password'"
                     :class="['form-control', validate.check({ registerPassword, type: 'password', form: 'register' })]"
-                    id="registerPassword" v-model="registerPassword" placeholder="Enter your Password" autocomplete="off">
+                    id="registerPassword" v-model="registerPassword" placeholder="Enter your Password"
+                    autocomplete="off">
 
                   <label v-if="password_visibility" for="registerPassword_visibility"
                     class="material-symbols-outlined ps-1">
@@ -122,7 +123,8 @@
                   </label>
                   <input :type="password_visibility ? 'text' : 'password'"
                     :class="['form-control', validate.check({ registerRetypePassword, type: 'retype-password', query: registerPassword, form: 'register' })]"
-                    id="registerRetypePassword" v-model="registerRetypePassword" placeholder="Enter your Password" autocomplete="off">
+                    id="registerRetypePassword" v-model="registerRetypePassword" placeholder="Enter your Password"
+                    autocomplete="off">
 
                   <label v-if="password_visibility" for="registerRetypePassword_visibility"
                     class="material-symbols-outlined ps-1">
@@ -148,6 +150,17 @@
           </template>
         </CmpFlipCard>
 
+      </div>
+      <div class="col-12" v-else>
+        <p class="text-center text-muted mb-3">Login solo per amministratori sito non per giocatori o associati</p>
+        <div class="d-flex justify-content-center">
+          <div style="max-width: 150px; width: 100%;">
+            <label for="adminPin" class="form-label text-center w-100">Inserisci PIN</label>
+            <input type="number" id="adminPin" v-model="adminPin" @input="checkPin" class="form-control text-center"
+              maxlength="4" placeholder="****" />
+          </div>
+        </div>
+        <p class="text-danger text-center mt-2" v-if="pinError">PIN errato. Riprova.</p>
       </div>
     </div>
   </div>
@@ -177,6 +190,9 @@ export default {
 
       password_visibility: false,
 
+      showLogin: false,
+      adminPin: '',
+      pinError: false,
     };
   },
   methods: {
@@ -218,6 +234,18 @@ export default {
         this.validate.init('register')
       } else {
         this.validate.init('login')
+      }
+    },
+
+    checkPin() {
+      if (this.adminPin.length >= 4) {
+        if (this.adminPin === '5555') {
+          this.showLogin = true;
+          this.pinError = false;
+        } else {
+          this.pinError = true;
+          this.adminPin = '';
+        }
       }
     },
 

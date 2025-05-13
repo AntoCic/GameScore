@@ -2,9 +2,7 @@
   <div class="container">
 
     <div class="row justify-content-center">
-      <div class="col-12" v-for="x in 50" :key="x">
-        <p>{{ x }}: aaaaaaa</p>
-      </div>
+      <h1>players</h1>
 
     </div>
 
@@ -15,7 +13,7 @@
 
 export default {
   data() {
-    return {};
+    return { };
   },
 
 }

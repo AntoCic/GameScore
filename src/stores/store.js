@@ -19,7 +19,9 @@ export const $s = reactive({
     accessToken: '',
     onLine: navigator.onLine,
 
-    pingSyncMS: (3 * 1000), // tempo di ping in millisecondi se 0 non viene eseguito
+    pingSyncMS: (0 * 1000), // tempo di ping in millisecondi se 0 non viene eseguito
+
+    selectedTab: 'home',
 
     async start() {
         this.offlineActions.load();

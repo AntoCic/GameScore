@@ -59,6 +59,11 @@ export default {
     '$route.name'(newRoute, oldRoute) {
       if (newRoute && newRoute !== oldRoute) {
         this.checkRoute();
+        if (this.$s.selectedTab !== newRoute) {
+          console.log(this.$s.selectedTab, newRoute);
+          
+          this.$s.selectedTab = newRoute
+        }
       }
     },
   },

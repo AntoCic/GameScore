@@ -1,8 +1,9 @@
 <template>
-  <footer>
+  <div style="min-height: 80px; flex-shrink: 0;" v-if="$s.isLogged"></div>
+  <footer v-if="$s.isLogged">
     <div class="tabs">
       <input type="radio" id="radio-1" name="tabs">
-      <label class="tab" for="radio-1" @click="selectTab('person_add')">
+      <label class="tab" for="radio-1" @click="selectTab('players')">
         <span class="material-symbols-outlined">
           person_add
         </span>
@@ -10,8 +11,8 @@
 
       <input type="radio" id="radio-2" name="tabs" checked>
       <label class="tab" for="radio-2" @click="selectTab('home')">
-        <div class="mainBtn-container" :class="{ active: selectedTab === 'home' }">
-          <div class="sphere-core"></div>
+        <div class="mainBtn-container" :class="{ active: $route.name === 'home' }">
+          <div class="sphere-tennis"></div>
           <div class="ring ring-1"></div>
           <div class="ring ring-2"></div>
           <div class="ring ring-3"></div>
@@ -35,13 +36,12 @@
 <script>
 export default {
   data() {
-    return {
-      selectedTab: 'home'
-    }
+    return {}
   },
   methods: {
     selectTab(name) {
-      this.selectedTab = name
+      this.$s.selectedTab = name
+      this.$router.push({ name });
     }
   }
 }
@@ -125,26 +125,50 @@ footer {
     perspective: 100px;
     transform-style: preserve-3d;
 
-    .sphere-core {
+    .sphere-tennis {
       position: absolute;
-      width: 24px;
+      overflow: hidden;
       height: 24px;
+      width: 24px;
       top: 50%;
       left: 50%;
-      transform: translate(-50%, -50%);
-      background: radial-gradient(circle at 40% 40%, #00eaff, #0066ff);
       border-radius: 50%;
-      box-shadow: 0 0 25px rgba(0, 234, 255, 0.5);
+      background-color: #cccc00;
+      background: radial-gradient(ellipse at center, #cccc00 0%, darken(#cccc00, 15) 100%);
+      box-sizing: border-box;
+      transform: translate(-50%, -50%) rotate(30deg);
+      box-shadow: 10px 20px 25px 10px rgba(#000, .2);
+
       animation: pulse 2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+
+      &:before,
+      &:after {
+        content: '';
+        position: absolute;
+        display: block;
+        height: 100%;
+        width: 100%;
+        border: 1.4px solid #fff;
+        border-radius: 50%;
+        box-sizing: border-box;
+      }
+
+      &:before {
+        right: 70%;
+      }
+
+      &:after {
+        left: 70%;
+      }
     }
 
     .ring {
       position: absolute;
       width: 100%;
       height: 100%;
-      border: 1px solid rgba(0, 234, 255, 0.7);
+      border: 1px solid rgba(204, 204, 0, 0.7);
       border-radius: 50%;
-      box-shadow: 0 0 15px rgba(0, 234, 255, 0.3);
+      box-shadow: 0 0 15px rgba(204, 204, 0, 0.3);
       transform-style: preserve-3d;
     }
 
@@ -158,7 +182,7 @@ footer {
       height: 36px;
       top: -2px;
       left: -2px;
-      border-color: rgba(0, 234, 255, 0.5);
+      border-color: rgba(204, 204, 0, 0.5);
     }
 
     .ring-3 {
@@ -167,7 +191,7 @@ footer {
       height: 40px;
       top: -4px;
       left: -4px;
-      border-color: rgba(0, 234, 255, 0.3);
+      border-color: rgba(204, 204, 0, 0.3);
     }
 
     @keyframes rotateX {
@@ -216,25 +240,25 @@ footer {
 
       0%,
       100% {
-        transform: translate(-50%, -50%) scale(1);
-        box-shadow: 0 0 25px rgba(0, 234, 255, 0.5);
+        transform: translate(-50%, -50%) rotate(30deg) scale(1);
+        box-shadow: 0 0 25px rgba(204, 204, 0, 0.5);
       }
 
       50% {
-        transform: translate(-50%, -50%) scale(1.1);
-        box-shadow: 0 0 35px rgba(0, 234, 255, 0.7);
+        transform: translate(-50%, -50%) rotate(30deg) scale(1.1);
+        box-shadow: 0 0 35px rgba(204, 204, 0, 0.7);
       }
     }
 
     &.active {
-      .sphere-core {
-        background: radial-gradient(circle at 40% 40%, #6669ff, #001aff);
-        box-shadow: 0 0 35px rgba(105, 102, 255, 0.7);
+      .sphere-tennis {
+        background-color: #1267b6;
+        background: radial-gradient(ellipse at center, #1267b6 0%, darken(#1267b6, 15) 100%);
       }
 
       .ring {
-        border-color: rgba(105, 102, 255, 0.7);
-        box-shadow: 0 0 20px rgba(102, 105, 255, 0.5);
+        border-color: rgba(28, 94, 155, 0.7);
+        box-shadow: 0 0 20px rgba(28, 94, 155, 0.5);
       }
     }
   }
