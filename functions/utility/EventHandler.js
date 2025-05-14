@@ -105,8 +105,8 @@ export class EventHandler {
 
   handlerError(error) {
     const key = (error.message || '').replace(/^Error:\s*/, '').trim();
-    const code = errorsList[key].code ?? errorsList.unknown.code;
-    const msg = errorsList[key].msg ?? errorsList.unknown.msg;
+    const code = errorsList[key]?.code ?? errorsList.unknown.code;
+    const msg = errorsList[key]?.msg ?? errorsList.unknown.msg;
     return this.errorResponse(code, msg);
   }
 

@@ -2,8 +2,12 @@
   <div class="container">
 
     <div class="row justify-content-center">
-      <div class="col-12" v-for="x in 50" :key="x">
-        <p>{{ x }}: aaaaaaa</p>
+      <div class="col-12">
+        <hr>
+        <h1>Tornei</h1>
+      </div>
+      <div class="col-12" v-for="x in 3" :key="x">
+        <p class="px-3 py-1 border rounded">{{ x }}: Torneo</p>
       </div>
 
     </div>

@@ -2,8 +2,8 @@
   <div class="container">
 
     <div class="row justify-content-center">
-
-      <h1>settings</h1>
+      <hr>
+      <h1>Impostazioni o altro</h1>
     </div>
 
   </div>
@@ -12,6 +12,7 @@
 <script>
 
 export default {
+  name: 'SettingsView',
   data() {
     return {};
   },

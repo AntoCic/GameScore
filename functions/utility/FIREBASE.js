@@ -5,6 +5,7 @@
 
 import admin from 'firebase-admin';
 import { log } from './logger';
+import { errorsList } from './errorsList';
 
 export class FIREBASE {
   constructor() {

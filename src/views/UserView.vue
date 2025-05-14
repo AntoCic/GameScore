@@ -3,8 +3,8 @@
     <div class="row text-center p-3">
       <div class="col">
         <img :src="user.photoURL" alt="User Photo" class="rounded-circle">
-        <p>{{ user.name }}</p>
-        <div class="input-group">
+        <p class="mb-0">{{ user.name }}</p>
+        <!-- <div class="input-group">
           <InputText inputGroup field="name" label lazy v-model="form" />
         </div>
         <div class="input-group">
@@ -23,12 +23,14 @@
         </div>
         <div class="input-group">
           <InputText inputGroup field="phoneNumber" lazy label v-model="form" />
-        </div>
+        </div> -->
         <!-- <div class="input-group">
           <InputText inputGroup field="photoURL" label v-model="form" />
         </div> -->
 
-        <p>{{ user.uid }}</p>
+        <p class="text-muted mb-0" style="font-size: 0.7rem;">{{ user.email }}</p>
+        <p class="text-muted" style="font-size: 0.7rem;">{{ user.uid }}</p>
+
         <button v-if="user.accessToken" @click="user.logout()" class="btn btn-outline-danger px-2">
           <span v-if="user.name" class="me-1">{{ user.name }}</span>
           <span class="material-symbols-outlined align-top">
@@ -52,19 +54,19 @@ export default {
   data() {
     return {
       user,
-      form: new FormValidator({ ...user.personalInfo }),
+      // form: new FormValidator({ ...user.personalInfo }),
     };
   },
   methods: {
   },
   mounted() {
     console.log('personalInfo ', this.user.personalInfo);
-    this.form.onChange = (trigger) => {
-      if (trigger.check) {
-        user.personalInfo.updateAndSyncLocal({ [trigger.field]: trigger.value })
-      }
-    }
-    this.form.state.logsOn = true
+    // this.form.onChange = (trigger) => {
+    //   if (trigger.check) {
+    //     user.personalInfo.updateAndSyncLocal({ [trigger.field]: trigger.value })
+    //   }
+    // }
+    // this.form.state.logsOn = true
   }
 };
 </script>

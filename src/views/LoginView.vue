@@ -152,7 +152,7 @@
 
       </div>
       <div class="col-12" v-else>
-        <p class="text-center text-muted mb-3">Login solo per amministratori sito non per giocatori o associati</p>
+        <p class="text-center mb-3 fw-bolder">Login solo per amministratori sito non per giocatori o associati</p>
         <div class="d-flex justify-content-center">
           <div style="max-width: 150px; width: 100%;">
             <label for="adminPin" class="form-label text-center w-100">Inserisci PIN</label>
@@ -238,8 +238,8 @@ export default {
     },
 
     checkPin() {
-      if (this.adminPin.length >= 4) {
-        if (this.adminPin === '5555') {
+      if (this.adminPin >= 1000) {
+        if (this.adminPin === 5555) {
           this.showLogin = true;
           this.pinError = false;
         } else {

@@ -5,7 +5,7 @@
         <span v-else v-html="label"></span>
         <span v-if="required" class="text-danger">*</span>
     </label>
-    <select v-model="value" ref="inputRef" :class="[classValidator, $attrs.class ?? 'form-select']"
+    <select v-model="value" ref="inputRef" :class="[classValidator, `form-select ${$attrs.class ?? ''}`]"
         :style="$attrs.style" :id="idToSet" :name="idToSet" data-bs-toggle="tooltip" data-bs-custom-class="bg-danger"
         :data-bs-title="errorDefaultText" :autocomplete="autocomplete" :disabled="disabled" :required="required"
         :autofocus="autofocus">

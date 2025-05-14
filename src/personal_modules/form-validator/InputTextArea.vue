@@ -6,7 +6,7 @@
         <span v-if="required" class="text-danger">*</span>
     </label>
     <textarea ref="inputRef" type="text" :value="value" @input="handleInput" @change="handleChange" :rows="rows"
-        :class="[classValidator, $attrs.class ?? 'form-control']" :style="$attrs.style" :id="idToSet" :name="idToSet"
+        :class="[classValidator, `form-control ${$attrs.class ?? ''}`]" :style="$attrs.style" :id="idToSet" :name="idToSet"
         data-bs-toggle="tooltip" data-bs-custom-class="bg-danger" :data-bs-title="errorDefaultText"
         :placeholder="placeholder" :disabled="disabled" :readonly="readonly"
         :required="required" :autofocus="autofocus" :maxlength="maxToSet" :minlength="minToSet" :lang="lang"></textarea>

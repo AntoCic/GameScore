@@ -26,6 +26,7 @@ import { todos } from './stores/todos.js';
 import { todoTypes } from './stores/todos.js';
 import log from './personal_modules/log.js';
 import Toast from './components/toast/Toast.vue';
+import { players } from './stores/players.js';
 
 export default {
   components: { AppHeader, AppFooter, CmpLoading, DeveloperMode, Toast },
@@ -36,6 +37,8 @@ export default {
       dbSync,
       todos,
       todoTypes,
+
+      players,
 
       pingInterval: null,
       isPinging: false,
@@ -61,7 +64,7 @@ export default {
         this.checkRoute();
         if (this.$s.selectedTab !== newRoute) {
           console.log(this.$s.selectedTab, newRoute);
-          
+
           this.$s.selectedTab = newRoute
         }
       }
@@ -113,6 +116,14 @@ export default {
 
         const promises = tabsName.map((tabNameToGet) => {
           switch (tabNameToGet) {
+            case 'auth_players':
+              return players.getAndSyncLocal()
+                .catch((error) => catchGetTab(error, tabNameToGet));
+
+            case 'auth_todo':
+              return todos.getAndSyncLocal()
+                .catch((error) => catchGetTab(error, tabNameToGet));
+
             case 'auth_todo':
               return todos.getAndSyncLocal()
                 .catch((error) => catchGetTab(error, tabNameToGet));
