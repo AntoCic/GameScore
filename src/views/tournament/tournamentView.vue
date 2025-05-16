@@ -23,8 +23,4 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.logo-shadows {
-  width: 100%;
-  max-width: 100px;
-}
 </style>

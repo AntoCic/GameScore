@@ -7,8 +7,8 @@
   "description": "GameScore è l'app per creare, gestire e seguire tornei di qualsiasi tipo, con punteggi, classifiche e aggiornamenti in tempo reale",
   "display": "fullscreen",
   "background_color": "#f7f6f6",
-  "logo": "/img/logo/logo.svg",
-  "logo_sm": "/img/logo/logo.svg",
+  "logo": "/img/logo/logo.png",
+  "logo_sm": "/img/logo/logo_sm.png",
   "type": "module",
   "scripts": {
     "set-init": "npm i && ntl link",

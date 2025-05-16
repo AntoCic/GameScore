@@ -16,10 +16,12 @@
 </template>
 
 <script>
+import { tournaments } from '../stores/tournaments';
 
+tournaments
 export default {
   data() {
-    return {};
+    return { tournaments };
   },
 
 }
