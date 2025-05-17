@@ -38,3 +38,25 @@
   font-weight: 400;
   font-style: normal;
 }
+
+@font-face {
+  font-family: calSans;
+  src: url('/fonts/Cal_Sans/CalSans-Regular.ttf');
+}
+
+.f-calSans {
+  font-family: calSans, sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: monoton;
+  src: url('/fonts/Monoton/Monoton-Regular.ttf');
+}
+
+.f-monoton {
+  font-family: monoton, sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}

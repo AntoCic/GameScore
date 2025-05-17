@@ -8,7 +8,7 @@
           </RouterLink>
         </div>
         <div class="col">
-          <h1 class="mb-0"> {{ $s.appName }} </h1>
+          <h1 class="mb-0 f-calSans"> {{ $s.appName }} </h1>
         </div>
         <div class="col-auto">
 
