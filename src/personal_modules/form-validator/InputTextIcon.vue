@@ -14,7 +14,7 @@
             :class="`position-absolute top-50 start-0 translate-middle-y material-symbols-outlined text-dark ${inputGroup ? 'ps-3' : ' ps-1'}`">{{
                 googleIcon }}</label>
         <input ref="inputRef" type="text" :value="value" @input="handleInput" @change="handleChange"
-            :class="[classValidator, $attrs.class ?? `form-control p-input-icon`]" :style="$attrs.style" :id="idToSet"
+            :class="[classValidator, `form-control p-input-icon ${$attrs.class ?? ''}`]" :style="$attrs.style" :id="idToSet"
             :name="idToSet" data-bs-toggle="tooltip" data-bs-custom-class="bg-danger" :data-bs-title="errorDefaultText"
             :placeholder="placeholder" :autocomplete="autocomplete" :disabled="disabled" :readonly="readonly"
             :required="required" :autofocus="autofocus" :maxlength="maxToSet" :minlength="minToSet" :lang="lang"

@@ -5,7 +5,7 @@
         <span v-else v-html="label"></span>
         <span v-if="required" class="text-danger">*</span>
     </label>
-    <input ref="inputRef" type="date" v-model="value" :class="[classValidator, $attrs.class ?? 'form-control']"
+    <input ref="inputRef" type="date" v-model="value" :class="[classValidator, `form-control ${$attrs.class ?? ''}`]"
         :style="$attrs.style" :id="idToSet" :name="idToSet" data-bs-toggle="tooltip" data-bs-custom-class="bg-danger"
         :data-bs-title="errorDefaultText" :placeholder="placeholder" :autocomplete="autocomplete" :disabled="disabled"
         :readonly="readonly" :required="required" :autofocus="autofocus" :max="maxToSet" :min="minToSet" :step="step">

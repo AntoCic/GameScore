@@ -6,7 +6,7 @@
         <span v-if="required" class="text-danger">*</span>
     </label>
     <input ref="inputRef" type="range" :value="value" @input="handleInput" @change="handleChange"
-        :class="[classValidator, $attrs.class ?? 'form-range']" :style="$attrs.style" :id="idToSet" :name="idToSet"
+        :class="[classValidator, `form-range ${$attrs.class ?? ''}`]" :style="$attrs.style" :id="idToSet" :name="idToSet"
         data-bs-toggle="tooltip" data-bs-custom-class="bg-danger" :data-bs-title="errorDefaultText"
         :placeholder="placeholder" :disabled="disabled" :readonly="readonly" :required="required" :autofocus="autofocus"
         :max="maxToSet" :min="minToSet" :step="step" :list="isList">

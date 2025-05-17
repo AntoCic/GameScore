@@ -6,6 +6,7 @@
       <p>in alto qrcode to condividi btn condividi stato publicazione paggina torneo e switchAutocondividiDopo10 secondi
         pagina publica non aggiornata a ultimo stato
       </p>
+      <p>{{ id }}</p>
     </div>
 
   </div>
@@ -14,13 +15,12 @@
 <script>
 
 export default {
-  name:'tournamentView',
+  name: 'TournamentView',
+  props: ['id'],
   data() {
     return {};
   },
-
 }
 </script>
 
-<style lang="scss" scoped>
-</style>
+<style lang="scss" scoped></style>
