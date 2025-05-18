@@ -9,7 +9,7 @@ import admin from 'firebase-admin';
 import { APP_NAME, onDevMod, allowedOrigins, allowedUserEmail } from "./config";
 import { log, handlerSlackMsg } from './utility/logger';
 import { errorsList } from './utility/errorsList';
-import { firebase } from './utility/FIREBASE';
+import { firebase, defaultGet, defaultPost, defaultPut, defaultDelete } from './utility/FIREBASE';
 import { EventHandler } from './utility/EventHandler';
 import { getFunctionToResolve } from './utility/getFunctionToResolve';
 import { TodoType } from './controller/TodoType';
@@ -17,37 +17,38 @@ import { TodoType } from './controller/TodoType';
 const routes = {
   GET: {
     public: {
-      "": async (event) => await firebase.get(event),
+      "": defaultGet,
+      "tournaments": defaultGet,
       "test": `[GET][NOT_AUTH]/: Chiamata test senza authorization`,
       "importTest": (event) => {
         return `${APP_NAME} :: ${onDevMod} :: ${JSON.stringify(allowedOrigins)} :: errorsList.length=${Object.keys(errorsList).length}`
       },
     },
     auth: {
-      "": async (event) => await firebase.get(event),
+      "": defaultGet,
       "test": (event) => `[GET][AUTH]/: Chiamata test da ${event.user?.displayName}. QueryParams [test:${event.queryParams?.test}]`,
     },
   },
 
   POST: {
     public: {
-      "": async (event) => await firebase.post(event),
+      "": defaultPost,
       "test": (event) => `[GET][AUTH]/: pathParams ${JSON.stringify(event.pathParams ?? { pathParams: 'vuoto' })}. QueryParams/${JSON.stringify(event.queryParams ?? { queryParams: 'vuoto' })}. bodyParams/${JSON.stringify(event.bodyParams ?? { bodyParams: 'vuoto' })}`,
       slackMsg: handlerSlackMsg,
     },
     auth: {
-      "": async (event) => await firebase.post(event),
+      "": defaultPost,
       slackMsg: handlerSlackMsg,
     },
   },
 
   PUT: {
     public: {
-      "": async (event) => await firebase.put(event),
+      "": defaultPut,
       "test": (event) => `[GET][AUTH]/: pathParams ${JSON.stringify(event.pathParams ?? { pathParams: 'vuoto' })}. QueryParams/${JSON.stringify(event.queryParams ?? { queryParams: 'vuoto' })}. bodyParams/${JSON.stringify(event.bodyParams ?? { bodyParams: 'vuoto' })}`,
     },
     auth: {
-      "": async (event) => await firebase.put(event),
+      "": defaultPut,
     },
   },
 
@@ -60,11 +61,11 @@ const routes = {
 
   DELETE: {
     public: {
-      "": async (event) => await firebase.delete(event),
+      "": defaultDelete,
       "test": (event) => `[GET][AUTH]/: pathParams ${JSON.stringify(event.pathParams ?? { pathParams: 'vuoto' })}. QueryParams/${JSON.stringify(event.queryParams ?? { queryParams: 'vuoto' })}. bodyParams/${JSON.stringify(event.bodyParams ?? { bodyParams: 'vuoto' })}`,
     },
     auth: {
-      "": async (event) => await firebase.delete(event),
+      "": defaultDelete,
       "todoType": TodoType.DELETE,
     },
   },
@@ -139,7 +140,7 @@ exports.handler = async function (event, context) {
       }
     };
 
-    const functionToResolve = getFunctionToResolve(routes[httpMethod], pathParams);
+    const functionToResolve = await getFunctionToResolve(routes[httpMethod], pathParams);
 
     if (typeof functionToResolve === 'string') {
       return {

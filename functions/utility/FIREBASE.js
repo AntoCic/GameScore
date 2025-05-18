@@ -66,6 +66,9 @@ export class FIREBASE {
   async get(event) {
     try {
       const fullPath = this.getFullPath(event)
+      console.log(fullPath);
+      console.log(event);
+      
       const snapshot = await this.database.ref(fullPath).once('value');
       const data = snapshot.val();
       if (data === null) {
@@ -130,5 +133,9 @@ try { firebase = new FIREBASE(); } catch (error) { log.error(String(error)); }
 //     log.error('non hai settato tutte le chiavi in env');
 //   }
 // }
+const defaultGet = async (event) => await firebase.get(event);
+const defaultPost = async (event) => await firebase.post(event);
+const defaultPut = async (event) => await firebase.put(event);
+const defaultDelete = async (event) => await firebase.delete(event);
 
-export { firebase }
+export { firebase, defaultGet, defaultPost, defaultPut, defaultDelete }
