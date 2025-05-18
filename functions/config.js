@@ -7,6 +7,6 @@ export const onDevMod = process.env.NETLIFY_DEV === "true" || process.env.NODE_E
 export const APP_NAME = 'testBase2';
 export const allowedOrigins = [
   'http://localhost',
-  'https://tempbase2.netlify.app'
+  'https://gamescore-cic.netlify.app'
 ];
 export const allowedUserEmail = undefined; // 'email'[] or undefined
