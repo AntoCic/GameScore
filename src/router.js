@@ -29,8 +29,6 @@ import E_todoTyped from './views/example/E_todoTyped.vue'
 import E_Toast from './views/example/E_Toast.vue'
 import PlayersView from './views/players/PlayersView.vue'
 import SettingsView from './views/settings/SettingsView.vue'
-import AddTournamentView from './views/tournament/AddTournamentView.vue'
-import TournamentView from './views/tournament/TournamentView.vue'
 // %-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%
 
 const fullRoutes = {
@@ -78,8 +76,7 @@ const fullRoutes = {
 
     { path: '/players', name: 'players', component: PlayersView },
 
-    { path: '/tournament/:id', name: 'tournament', component: TournamentView, props: true },
-    { path: '/addTournament', name: 'addTournament', component: AddTournamentView },
+    
 
     { path: '/settings', name: 'settings', component: SettingsView },
   ],

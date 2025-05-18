@@ -15,18 +15,19 @@
         <h1>Tornei</h1>
       </div>
       <div class="col-12 mb-3">
-        <RouterLink :to="{ name: 'addTournament' }">
+        <!-- <RouterLink :to="{ name: 'addTournament' }">
           <button type="button" class="btn btn-outline-success w-100">
             + Torneo
           </button>
-        </RouterLink>
+        </RouterLink> -->
       </div>
       <div class="col-12" v-for="x in 3" :key="x">
-        <RouterLink :to="{ name: 'tournament', params: { id: x } }">
+        <p>hola</p>
+        <!-- <RouterLink :to="{ name: 'tournament', params: { id: x } }">
           <button type="button" class="btn btn-outline-dark w-100">
             {{ x }}: Torneo
           </button>
-        </RouterLink>
+        </RouterLink> -->
       </div>
     </div>
 
@@ -51,8 +52,4 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.logo-shadows {
-  width: 100%;
-  max-width: 100px;
-}
 </style>
