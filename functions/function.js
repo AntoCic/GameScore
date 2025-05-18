@@ -18,7 +18,6 @@ const routes = {
   GET: {
     public: {
       "": defaultGet,
-      "tournaments": defaultGet,
       "test": `[GET][NOT_AUTH]/: Chiamata test senza authorization`,
       "importTest": (event) => {
         return `${APP_NAME} :: ${onDevMod} :: ${JSON.stringify(allowedOrigins)} :: errorsList.length=${Object.keys(errorsList).length}`
@@ -26,6 +25,7 @@ const routes = {
     },
     auth: {
       "": defaultGet,
+      "tournaments": defaultGet,
       "test": (event) => `[GET][AUTH]/: Chiamata test da ${event.user?.displayName}. QueryParams [test:${event.queryParams?.test}]`,
     },
   },
@@ -140,7 +140,7 @@ exports.handler = async function (event, context) {
       }
     };
 
-    const functionToResolve = await getFunctionToResolve(routes[httpMethod], pathParams);
+    const { functionToResolve, routerEntry } = getFunctionToResolve(event, routes[httpMethod], pathParams);
 
     if (typeof functionToResolve === 'string') {
       return {
@@ -150,7 +150,7 @@ exports.handler = async function (event, context) {
       }
     }
 
-    const call = new EventHandler(event, functionToResolve, user);
+    const call = new EventHandler(event, functionToResolve, routerEntry, user);
     return call.response();
 
   } catch (error) {

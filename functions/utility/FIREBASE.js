@@ -65,16 +65,14 @@ export class FIREBASE {
 
   async get(event) {
     try {
-      const fullPath = this.getFullPath(event)
-      console.log(fullPath);
-      console.log(event);
+      const fullPath = this.getFullPath(event);
       
       const snapshot = await this.database.ref(fullPath).once('value');
       const data = snapshot.val();
-      if (data === null) {
+      if (data === null && event.routerEntry === undefined) {
         throw new Error(errorsList.notFound.key);
       }
-      return data;
+      return data ?? {};
     } catch (error) {
       throw new Error(String(error));
     }

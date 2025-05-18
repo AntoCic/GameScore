@@ -8,12 +8,12 @@ import { allowedOrigins } from "../config";
 import { errorsList } from './errorsList';
 
 export class EventHandler {
-  constructor({ rawUrl, path, httpMethod, body, headers, multiValueQueryStringParameters }, functionToResolve, user) {
+  constructor({ rawUrl, path, httpMethod, body, headers, multiValueQueryStringParameters }, functionToResolve, routerEntry, user) {
     this.rawUrl = rawUrl;
     this.httpMethod = httpMethod;
     this.pathParams = this.parsePathParams(path);
     this.queryParams = this.parseQueryParams(multiValueQueryStringParameters);
-
+    this.routerEntry = routerEntry;
 
     try {
       this.bodyParams = body !== undefined ? JSON.parse(body) : undefined;
