@@ -1,4 +1,4 @@
 import { reactive } from 'vue';
-import Player from '../models/Player';
+import Players from '../models/Players';
 
-export const players = reactive(new Player());
+export const players = reactive(new Players());

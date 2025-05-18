@@ -11,15 +11,17 @@
         </h3>
         <InputText field="name" label="Nome" lazy v-model="formPlayer" class="mb-3" />
         <InputText field="surname" label="Cognome" lazy v-model="formPlayer" class="mb-3" />
+        <InputSelect field="level" label="Livello" v-model="formPlayer" :options="levelsPadel" class="mb-3" />
         <InputTextArea field="note" label="Note" lazy v-model="formPlayer" class="mb-2" />
         <Btn type="submit" class="w-100" :loading="formPlayer.state._loading" googleIcon="send" />
       </form>
 
       <div class="col-12 col-xl-6">
-        <h3>Tutti i giocatori</h3>
+        <h3>Tutti i giocatori (di qualsiasi torneo)</h3>
         <div class="border rounded bg-white mb-3 px-3 py-1" v-for="(player, key) in players" :key="'p_' + key">
           <p class="mb-0"> {{ player.name }} {{ player.surname }}</p>
-          <p class="mb-0 text-muted" v-if="player.note">{{ player.note }}</p>
+          <p class="mb-0 text-muted" v-if="player.level || player.note"> {{ getLivelloText(player.level) }} ({{
+            player.note }})</p>
 
         </div>
       </div>
@@ -33,17 +35,21 @@ import InputText from '../../personal_modules/form-validator/InputText.vue';
 import Btn from '../../components/Btn.vue';
 import { players } from '../../stores/players';
 import InputTextArea from '../../personal_modules/form-validator/InputTextArea.vue';
+import InputSelect from '../../personal_modules/form-validator/InputSelect.vue';
+import { levelsPadel } from '../../models/Players';
 
 export default {
   name: 'PlayersView',
-  components: { InputText, Btn, InputTextArea },
+  components: { InputText, Btn, InputTextArea, InputSelect },
   data() {
     return {
       players,
+      levelsPadel,
       formPlayer: new FormValidator({
         name: '',
         surname: '',
-        note: ''
+        level: 0,
+        note: '',
       })
     };
   },
@@ -61,6 +67,11 @@ export default {
           this.formPlayer.reset();
         }
       }
+    },
+    getLivelloText(value) {
+      const livello = this.levelsPadel ? this.levelsPadel.find((l) => l.value === value) : '';
+
+      return livello ? livello.text : value;
     }
   }
 };

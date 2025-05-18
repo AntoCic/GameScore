@@ -14,37 +14,14 @@
         <InputDate field="date" v-model="formTournament" label="Data inizio (indicativa)" class="mb-3" />
         <InputSelect :options="optionsMatchTypes" field="type" label="Tipo di torneo" v-model="formTournament"
           emptyOption class="mb-3" />
-
-        <div class="accordion" id="accordionAddPlayer">
-          <div class="accordion-item">
-            <h2 class="accordion-header">
-              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
-                Aggiungi giocatori (si puo fare anche successivamente)
-              </button>
-            </h2>
-            <div id="collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionAddPlayer">
-              <div class="accordion-body">
-                <div class="form-check form-switch form-check-reverse border-bottom pt-2" v-for="key in 10" :key="'pl' + key">
-                  <input class="form-check-input " type="checkbox" :id="'player_' + key">
-                  <label class="form-check-label w-100 text-start px-2" :for="'player_' + key">{{ 'player_' + key }}</label>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+        <InputSelectAccordion :options="optionsPlayers" field="players"
+          label="Aggiungi giocatori (si puo fare anche successivamente)" v-model="formTournament" emptyOption
+          class="mb-3" />
 
         <Btn type="submit" class="w-100" :loading="formTournament.state._loading" googleIcon="send" />
       </form>
 
-      <div class="col-12 col-xl-6">
-        <h3>Tutti i Tornei</h3>
-        <!-- <div class="border rounded bg-white mb-3 px-3 py-1" v-for="(tournament, key) in tournaments.list"
-          :key="'t_' + key">
-          <p class="mb-0 fw-bold">{{ tournament.name }}</p>
-          <p class="mb-0 text-muted">{{ tournament.type }}</p>
-        </div> -->
-      </div>
+      <!-- <pre class="bg-light text-dark">{{ formTournament }}</pre> -->
     </div>
   </div>
 </template>
@@ -55,15 +32,18 @@ import InputText from '../../personal_modules/form-validator/InputText.vue';
 import InputTextArea from '../../personal_modules/form-validator/InputTextArea.vue';
 import Btn from '../../components/Btn.vue';
 import { tournaments } from '../../stores/tournaments';
+import { players } from '../../stores/players';
 import InputSelect from '../../personal_modules/form-validator/InputSelect.vue';
 import InputDate from '../../personal_modules/form-validator/InputDate.vue';
+import InputSelectAccordion from '../../personal_modules/form-validator/InputSelectAccordion.vue';
 
 export default {
   name: 'AddTournamentView',
-  components: { InputText, InputTextArea, InputSelect, InputDate, Btn },
+  components: { InputText, InputTextArea, InputSelect, InputDate, InputSelectAccordion, Btn },
   data() {
     return {
       tournaments,
+      players,
       formTournament: new FormValidator({
         name: '',
         date: new Date(),
@@ -78,10 +58,18 @@ export default {
         { text: 'eliminazione', value: 'eliminazione' },
         { text: 'gironi', value: 'gironi' },
       ]
+    },
+    optionsPlayers() {
+      const res = [];
+      for (const key in this.players) {
+        res.push({ text: this.players[key].displayName(), value: key });
+      }
+      return res
     }
   },
   mounted() {
     this.tournaments.get();
+    this.players.get();
   },
   methods: {
     async handleSubmitTournament() {
@@ -90,8 +78,20 @@ export default {
         if (tournament !== undefined) {
           tournament.teams = [];
           tournament.matches = [];
+          tournament.players = tournament.players.reduce((acc, playerId) => {
+            acc[playerId] = this.players[playerId].displayName();
+            return acc;
+          }, {});
           this.formTournament.state._loading = true;
-          await this.tournaments.addAndSyncLocal(tournament);
+          const res = await this.tournaments.addAndSyncLocal(tournament);
+          console.log(res);
+          
+          if (res) {
+            this.$toast.success(`🎉 Torneo "${tournament.name ?? 'senza nome'}" aggiunto con successo! Pronto a scendere in campo?`)
+          } else {
+            this.$toast.error(`😓 Oops! Qualcosa è andato storto durante la creazione del torneo. Riprova!`)
+          }
+
           this.formTournament.state._loading = false;
           this.formTournament.reset();
         }

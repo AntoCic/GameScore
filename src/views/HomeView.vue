@@ -21,11 +21,10 @@
           </button>
         </RouterLink>
       </div>
-      <div class="col-12" v-for="x in 3" :key="x">
-        <p>hola</p>
-        <RouterLink :to="{ name: 'tournament', params: { id: x } }">
+      <div class="col-12" v-for="(tournament, key) in tournaments" :key="key">
+        <RouterLink :to="{ name: 'tournament', params: { id: key } }">
           <button type="button" class="btn btn-outline-dark w-100">
-            {{ x }}: Torneo
+            {{ tournament.name }} ({{ new Date(tournament.date).toLocaleDateString()  }})
           </button>
         </RouterLink>
       </div>
@@ -37,12 +36,12 @@
 <script>
 import { tournaments } from '../stores/tournaments';
 
-tournaments
 export default {
   data() {
     return { tournaments };
   },
   mounted() {
+    this.tournaments.get();
     if (this.$route.query.id) {
       console.log(this.$route.query.id);
     }
@@ -51,5 +50,4 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
-</style>
+<style lang="scss" scoped></style>
