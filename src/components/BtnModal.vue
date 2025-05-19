@@ -7,7 +7,7 @@
             </span>
         </slot>
     </button>
-    <div class="modal fade text-dark" :id="name" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    <div class="modal fade text-dark" :id="name" :data-bs-backdrop="backdrop" data-bs-keyboard="false" tabindex="-1"
         aria-labelledby="modalLabel" aria-hidden="true">
         <div :class="`modal-dialog modal-dialog-centered modal-dialog-scrollable${modalSize}`">
             <div class="modal-content">
@@ -45,6 +45,7 @@ export default {
         icon: { type: String, default: 'delete' },
         // xl lg sm fullscreen fullscreen-sm-down fullscreen-md-down fullscreen-lg-down fullscreen-xl-down fullscreen-xxl-down
         size: { type: String, default: '' },
+        backdrop: { type: String, default: 'static' },
     },
     methods: {
     },

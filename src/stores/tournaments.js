@@ -1,4 +1,4 @@
 import { reactive } from 'vue';
-import Tournament from '../models/Tournament';
+import Tournaments from '../models/Tournaments';
 
-export const tournaments = reactive(new Tournament());
+export const tournaments = reactive(new Tournaments());

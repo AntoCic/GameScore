@@ -40,7 +40,7 @@ export default class DB {
 
     fullPath() {
         const apiPrefix = `${this.constructor.apiPrefix || '/api'}${this.constructor.addUserId ? '/' + user.uid : ''}`;
-        return `${apiPrefix}/${this.constructor.mainPath}`;
+        return `${apiPrefix}/${this.constructor.mainPath}${this.id ? '/' + this.id : ''}`;
     }
     localPath() {
         const localPrefix = this.constructor.localPrefix || '_';
