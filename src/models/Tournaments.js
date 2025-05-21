@@ -38,7 +38,8 @@ class Tournament extends authDB {
     }
     addTeams(players) {
         if (!this.teams) { this.teams = {} };
-        this.teams[nanoid()] = { players };
+        const id = nanoid();
+        this.teams[id] = { id, players };
         this.saveAndSyncLocal()
     }
     deleteTeam(key) {
@@ -46,5 +47,18 @@ class Tournament extends authDB {
             delete this.teams[key];
             this.saveAndSyncLocal();
         }
+    }
+    getFreePlayers() {
+        if (!this.players) return {};
+        if (!this.teams) return this.players;
+        const allTeamPlayers = Object.values(this.teams).flatMap(team => team.players);
+        const free = {};
+        for (const key in this.players) {
+            if (!allTeamPlayers.includes(key)) {
+                free[key] = this.players[key];
+            }
+        }
+
+        return free;
     }
 }
