@@ -24,7 +24,7 @@
     <div class="col-6 col-md-4 col-lg-3 mb-3 text-center" v-for="(team, teamKey) in tournament.teams" :key="teamKey">
       <div class="list-group list-group-horizontal">
         <button type="button" class="list-group-item list-group-item-danger" aria-current="true">
-          <BtnModal :name="'deleteTeam' + teamKey" backdrop="false" @onConfirm="tournament.deleteTeam(teamKey)" />
+          <BtnModal :name="'deleteTeam' + teamKey" backdrop="false" @onConfirm="deleteTeam(teamKey)" />
         </button>
         <div class="list-group-item w-100">
           <ul class="list-group list-group-flush">
@@ -75,7 +75,11 @@ export default {
       const compagno1 = this.addingTeamMate;
       const compagno2 = key;
       this.tournament.addTeams([compagno1, compagno2]);
-
+      this.tournament.saveAndSyncLocal();
+    },
+    handleDeleteTeam(key) {
+      this.tournament.deleteTeam(key);
+      this.tournament.saveAndSyncLocal();
     }
   },
   mounted() {

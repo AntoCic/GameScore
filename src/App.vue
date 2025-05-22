@@ -22,11 +22,10 @@ import AppHeader from './layout/AppHeader.vue';
 import AppFooter from './layout/AppFooter.vue';
 import CmpLoading from './components/CmpLoading.vue';
 import DeveloperMode from './components/DeveloperMode.vue';
-import { todos } from './stores/todos.js';
-import { todoTypes } from './stores/todos.js';
 import log from './personal_modules/log.js';
 import Toast from './components/toast/Toast.vue';
 import { players } from './stores/players.js';
+import { tournaments } from './stores/tournaments.js';
 
 export default {
   components: { AppHeader, AppFooter, CmpLoading, DeveloperMode, Toast },
@@ -35,10 +34,9 @@ export default {
       user,
       routes,
       dbSync,
-      todos,
-      todoTypes,
 
       players,
+      tournaments,
 
       pingInterval: null,
       isPinging: false,
@@ -120,16 +118,8 @@ export default {
               return players.getAndSyncLocal()
                 .catch((error) => catchGetTab(error, tabNameToGet));
 
-            case 'auth_todo':
-              return todos.getAndSyncLocal()
-                .catch((error) => catchGetTab(error, tabNameToGet));
-
-            case 'auth_todo':
-              return todos.getAndSyncLocal()
-                .catch((error) => catchGetTab(error, tabNameToGet));
-
-            case 'auth_todoType':
-              return todoTypes.getAndSyncLocal()
+            case 'auth_tournaments':
+              return tournaments.getAndSyncLocal()
                 .catch((error) => catchGetTab(error, tabNameToGet));
 
             case 'user_personalInfo':

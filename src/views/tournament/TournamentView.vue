@@ -7,6 +7,12 @@
       <div class="col-auto">
         <Btn type="button" btn="outline-dark" googleIcon="reduce_capacity" data-bs-toggle="offcanvas"
           data-bs-target="#offCanvas" aria-controls="offCanvas" @click="setOffCanvas('team')">Squadre</Btn>
+        <Btn type="button" btn="outline-dark" googleIcon="qr_code_2" data-bs-toggle="offcanvas"
+          data-bs-target="#offCanvas" aria-controls="offCanvas" @click="setOffCanvas('qrcode')"></Btn>
+        <Btn type="button" btn="outline-dark" googleIcon="share" data-bs-toggle="offcanvas"
+          data-bs-target="#offCanvas" aria-controls="offCanvas" @click="setOffCanvas('share')"></Btn>
+        <Btn type="button" btn="outline-dark" googleIcon="rocket_launch" data-bs-toggle="offcanvas"
+          data-bs-target="#offCanvas" aria-controls="offCanvas" @click="setOffCanvas('pushOnline')"></Btn>
       </div>
     </div>
 
@@ -14,43 +20,43 @@
       <p>in alto qrcode to condividi btn condividi stato publicazione paggina torneo e switchAutocondividiDopo10 secondi
         pagina publica non aggiornata a ultimo stato
       </p>
-      <div class="col-6 col-md-4 col-lg-3 mb-3 text-center" v-for="(team, teamKey) in tournament.teams" :key="teamKey">
+      <!-- <div class="col-6 col-md-4 col-lg-3 mb-3 text-center" v-for="(team, teamKey) in tournament.teams" :key="teamKey">
         <TeamCard :small="true" :tournament="tournament" :team="team" :teamKey="teamKey" />
-      </div>
+      </div> -->
       <div class="col-12">
         <div class="overflow-auto border border-2 rounded-3 container-torneo-eliminzione">
           <div class="giornata">
             <div class="match">
-              <TeamCard :tournament="tournament" :team="matchups.semifinal1.team1" />
-              <TeamCard :tournament="tournament" :team="matchups.semifinal1.team2" />
+              <TeamCard :small="true" :tournament="tournament" :team="matchups.semifinal1.team1" />
+              <TeamCard :small="true" :tournament="tournament" :team="matchups.semifinal1.team2" />
             </div>
             <div class="match">
-              <TeamCard :tournament="tournament" :team="matchups.semifinal1.team1" />
-              <TeamCard :tournament="tournament" :team="matchups.semifinal1.team2" />
+              <TeamCard :small="true" :tournament="tournament" :team="matchups.semifinal1.team1" />
+              <TeamCard :small="true" :tournament="tournament" :team="matchups.semifinal1.team2" />
             </div>
             <div class="match">
-              <TeamCard :tournament="tournament" :team="matchups.semifinal1.team1" />
-              <TeamCard :tournament="tournament" :team="matchups.semifinal1.team2" />
+              <TeamCard :small="true" :tournament="tournament" :team="matchups.semifinal1.team1" />
+              <TeamCard :small="true" :tournament="tournament" :team="matchups.semifinal1.team2" />
             </div>
             <div class="match">
-              <TeamCard :tournament="tournament" :team="matchups.semifinal1.team1" />
-              <TeamCard :tournament="tournament" :team="matchups.semifinal1.team2" />
-            </div>
-          </div>
-          <div class="giornata">
-            <div class="match">
-              <TeamCard :tournament="tournament" :team="matchups.semifinal1.team1" />
-              <TeamCard :tournament="tournament" :team="matchups.semifinal1.team2" />
-            </div>
-            <div class="match">
-              <TeamCard :tournament="tournament" :team="matchups.semifinal1.team1" />
-              <TeamCard :tournament="tournament" :team="matchups.semifinal1.team2" />
+              <TeamCard :small="true" :tournament="tournament" :team="matchups.semifinal1.team1" />
+              <TeamCard :small="true" :tournament="tournament" :team="matchups.semifinal1.team2" />
             </div>
           </div>
           <div class="giornata">
             <div class="match">
-              <TeamCard :tournament="tournament" :team="matchups.semifinal1.team1" />
-              <TeamCard :tournament="tournament" :team="matchups.semifinal1.team2" />
+              <TeamCard :small="true" :tournament="tournament" :team="matchups.semifinal1.team1" />
+              <TeamCard :small="true" :tournament="tournament" :team="matchups.semifinal1.team2" />
+            </div>
+            <div class="match">
+              <TeamCard :small="true" :tournament="tournament" :team="matchups.semifinal1.team1" />
+              <TeamCard :small="true" :tournament="tournament" :team="matchups.semifinal1.team2" />
+            </div>
+          </div>
+          <div class="giornata">
+            <div class="match">
+              <TeamCard :small="true" :tournament="tournament" :team="matchups.semifinal1.team1" />
+              <TeamCard :small="true" :tournament="tournament" :team="matchups.semifinal1.team2" />
             </div>
           </div>
         </div>
@@ -135,11 +141,6 @@ export default {
     setOffCanvas(name) {
       this.offCanvas = name;
       return this.offCanvas;
-    },
-    addTeam(key) {
-      const compagno1 = this.addingTeamMate;
-      const compagno2 = key;
-      this.tournament.addTeams([compagno1, compagno2]);
     },
     checkTeamAndToast() {
       if (!this.areThereTeams) {

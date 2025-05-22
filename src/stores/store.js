@@ -19,7 +19,7 @@ export const $s = reactive({
     accessToken: '',
     onLine: navigator.onLine,
 
-    pingSyncMS: (0 * 1000), // tempo di ping in millisecondi se 0 non viene eseguito
+    pingSyncMS: (3 * 1000), // tempo di ping in millisecondi se 0 non viene eseguito
 
     selectedTab: 'home',
 
@@ -27,23 +27,6 @@ export const $s = reactive({
         this.offlineActions.load();
         $loading.on();
         setTimeout(async () => {
-
-            // await axios.get('/api')
-            //     .then((res) => {
-            //         console.log(res.data);
-            //     })
-            //     .catch((err) => {
-            //         location.reload();
-            //     });
-
-            // await axios.post('/api/test', { msg: 'Hello World' })
-            //     .then((res) => {
-            //         console.log(res.data);
-            //     })
-            //     .catch((err) => {
-            //         location.reload();
-            //     });
-
             $loading.off()
         }, 500);
 

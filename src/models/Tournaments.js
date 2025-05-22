@@ -24,7 +24,6 @@ export default class Tournaments extends authDB {
 
 class Tournament extends authDB {
     static mainPath = "tournaments";
-    // need to fix like "tournaments/:id" cosi lui sa che var ha id e non salva localmente in maniera sbagliata
     constructor({ id, name, date, players, type, teams, matchs, note }) {
         super();
         this.id = id;
@@ -40,12 +39,10 @@ class Tournament extends authDB {
         if (!this.teams) { this.teams = {} };
         const id = nanoid();
         this.teams[id] = { id, players };
-        this.saveAndSyncLocal()
     }
     deleteTeam(key) {
         if (this.teams && this.teams[key]) {
             delete this.teams[key];
-            this.saveAndSyncLocal();
         }
     }
     getFreePlayers() {
